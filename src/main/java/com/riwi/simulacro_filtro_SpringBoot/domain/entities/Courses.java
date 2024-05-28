@@ -1,12 +1,11 @@
 package com.riwi.simulacro_filtro_SpringBoot.domain.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Entity(name = "assignments")
+import java.util.List;
+
+@Entity(name = "courses")
 @Data
 @Builder
 @AllArgsConstructor
@@ -22,5 +21,19 @@ public class Courses {
     @Lob
     @Column(nullable = false)
     private String description;
-    
+
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @OneToMany(
+            mappedBy = "lessons",
+            fetch = FetchType.LAZY
+    )
+    private List<Lessons> lessons;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(
+            name = "fk_user_id",
+            referencedColumnName = "users"
+    )
+    private Users users;
 }

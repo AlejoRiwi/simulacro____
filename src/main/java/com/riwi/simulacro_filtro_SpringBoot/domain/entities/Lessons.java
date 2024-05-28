@@ -5,7 +5,7 @@ import lombok.*;
 
 import java.util.List;
 
-@Entity(name = "assignments")
+@Entity(name = "lessons")
 @Data
 @Builder
 @AllArgsConstructor
@@ -29,5 +29,12 @@ public class Lessons {
             fetch = FetchType.LAZY
     )
     private List<Assignments> assignments;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(
+            name = "fk_course_id",
+            referencedColumnName = "courses"
+    )
+    private Courses courses;
 
 }

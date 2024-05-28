@@ -32,4 +32,12 @@ public class Users {
             fetch = FetchType.LAZY
     )
     private List<Submissions> submissions;
+
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @OneToMany(
+            mappedBy = "courses",
+            fetch = FetchType.LAZY
+    )
+    private List<Courses> courses;
 }
