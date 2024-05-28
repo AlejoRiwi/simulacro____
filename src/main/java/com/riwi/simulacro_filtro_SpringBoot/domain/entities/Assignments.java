@@ -1,12 +1,10 @@
 package com.riwi.simulacro_filtro_SpringBoot.domain.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity(name = "assignments")
 @Data
@@ -25,4 +23,19 @@ public class Assignments {
 
     @Column(nullable = false)
     private Date due_date;
+
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @OneToMany(
+            mappedBy = "users",
+            fetch = FetchType.LAZY
+    )
+    private List<Submissions> submissions;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(
+            name = "fk_lessons",
+            referencedColumnName = "lesson_id"
+    )
+    private Lessons lessons;
 }

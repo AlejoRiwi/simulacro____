@@ -1,10 +1,7 @@
 package com.riwi.simulacro_filtro_SpringBoot.domain.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -28,4 +25,18 @@ public class Submissions {
 
     @Column(nullable = false)
     private BigDecimal grade;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(
+            name = "fk_user_id",
+            referencedColumnName = "user_id"
+    )
+    private Users users;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(
+            name = "fk_assignment_id",
+            referencedColumnName = "assignment_id"
+    )
+    private Assignments assignments;
 }

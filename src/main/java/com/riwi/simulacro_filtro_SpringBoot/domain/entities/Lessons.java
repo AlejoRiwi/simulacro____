@@ -1,10 +1,9 @@
 package com.riwi.simulacro_filtro_SpringBoot.domain.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import java.util.List;
 
 @Entity(name = "assignments")
 @Data
@@ -22,4 +21,13 @@ public class Lessons {
     @Lob
     @Column(nullable = false)
     private String content;
+
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @OneToMany(
+            mappedBy = "assignments",
+            fetch = FetchType.LAZY
+    )
+    private List<Assignments> assignments;
+
 }
