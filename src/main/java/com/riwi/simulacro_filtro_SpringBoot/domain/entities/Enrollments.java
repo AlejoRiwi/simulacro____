@@ -16,8 +16,24 @@ import java.util.Date;
 public class Enrollments {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private int enrollment_id;
+
     @Column(nullable = false)
     private Date enrollment_date;
+
+    // Relacionamiento con Users Muchos a uno Con user
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(
+            name = "fk_user_id",
+            referencedColumnName = "user_id"
+    )
+    private Users users;
+
+    // Relacionamiento con Users Muchos a uno Con Courses
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(
+            name = "fk_course_id",
+            referencedColumnName = "course_id"
+    )
+    private Courses courses;
 }

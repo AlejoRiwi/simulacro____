@@ -22,6 +22,7 @@ public class Courses {
     @Column(nullable = false)
     private String description;
 
+    // Listo Relacionamiento con Lessons
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(
@@ -30,10 +31,27 @@ public class Courses {
     )
     private List<Lessons> lessons;
 
+    // Listo relacionamiento con Users
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(
             name = "fk_user_id",
-            referencedColumnName = "users"
+            referencedColumnName = "user_id"
     )
-    private Users users;
+    private Users instructor;
+
+    // Listo relacionamiento con Enrollments
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(
+            name = "fk_enrollment_id",
+            referencedColumnName = "enrollment_id"
+    )
+    private List<Enrollments> enrollments;
+
+    // Listo relacionamiento con Messages
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(
+            name = "fk_message_id",
+            referencedColumnName = "message_id"
+    )
+    private List<Messages> message;
 }

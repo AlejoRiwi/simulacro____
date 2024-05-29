@@ -25,6 +25,7 @@ public class Users {
     @Enumerated(EnumType.STRING)
     private String role;
 
+    // Relacion Submissions
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(
@@ -33,6 +34,7 @@ public class Users {
     )
     private List<Submissions> submissions;
 
+    // Relacion Courses
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(
@@ -40,4 +42,14 @@ public class Users {
             fetch = FetchType.LAZY
     )
     private List<Courses> courses;
+
+    // Relacion Enrollments
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @OneToMany(
+            mappedBy = "enrollment",
+            fetch = FetchType.LAZY
+    )
+    private List<Enrollments> enrollments;
+
 }

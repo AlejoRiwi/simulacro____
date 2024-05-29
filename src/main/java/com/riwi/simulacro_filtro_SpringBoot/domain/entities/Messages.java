@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
-@Entity(name = "enrollment")
+@Entity(name = "message")
 @Data
 @Builder
 @AllArgsConstructor
@@ -24,4 +24,20 @@ public class Messages {
 
     @Column(nullable = false)
     private Date sent_date;
+
+    //Lista relacion de muchos a uno con Courses
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(
+            name = "fk_course_id",
+            referencedColumnName = "course_id"
+    )
+    private Courses courses;
+
+    //Lista relacion de muchos a uno con Courses
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(
+            name = "fk_user_id",
+            referencedColumnName = "user_id"
+    )
+    private Users sender;
 }
