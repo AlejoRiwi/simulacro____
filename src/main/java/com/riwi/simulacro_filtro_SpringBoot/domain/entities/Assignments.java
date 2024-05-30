@@ -14,7 +14,7 @@ import java.util.List;
 public class Assignments {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int assignment_id;
+    private Long assignment_id;
     @Column(length = 100, nullable = false)
     private String assignment_title;
     @Lob
@@ -27,7 +27,7 @@ public class Assignments {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(
-            mappedBy = "users",
+            mappedBy = "assignments",
             fetch = FetchType.LAZY
     )
     private List<Submissions> submissions;

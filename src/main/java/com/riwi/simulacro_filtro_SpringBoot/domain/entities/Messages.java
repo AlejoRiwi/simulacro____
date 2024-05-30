@@ -16,7 +16,7 @@ import java.util.Date;
 public class Messages {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int message_id;
+    private Long message_id;
 
     @Lob
     @Column(nullable = false)
@@ -40,4 +40,12 @@ public class Messages {
             referencedColumnName = "user_id"
     )
     private Users sender;
+
+    //Lista relacion de muchos a uno con Courses
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(
+            name = "fk_reciever_id",
+            referencedColumnName = "user_id"
+    )
+    private Users reciever;
 }

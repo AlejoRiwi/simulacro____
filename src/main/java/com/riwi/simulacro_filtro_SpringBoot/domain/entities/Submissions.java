@@ -14,7 +14,7 @@ import java.util.Date;
 public class Submissions {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int submission_id;
+    private Long submission_id;
 
     @Lob
     @Column(nullable = false)

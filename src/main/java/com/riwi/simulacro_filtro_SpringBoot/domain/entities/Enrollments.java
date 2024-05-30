@@ -16,7 +16,7 @@ import java.util.Date;
 public class Enrollments {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int enrollment_id;
+    private Long enrollment_id;
 
     @Column(nullable = false)
     private Date enrollment_date;

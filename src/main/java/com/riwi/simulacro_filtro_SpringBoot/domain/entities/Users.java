@@ -1,5 +1,6 @@
 package com.riwi.simulacro_filtro_SpringBoot.domain.entities;
 
+import com.riwi.simulacro_filtro_SpringBoot.util.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,8 +12,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Users {
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int user_id;
+    private Long user_id;
     @Column(length = 50, unique = true, nullable = false)
     private String userName;
     @Column(length = 255, nullable = false)
@@ -23,7 +25,8 @@ public class Users {
     private String fullName;
 
     @Enumerated(EnumType.STRING)
-    private String role;
+    @Column(name = "role_user", nullable = false)
+    private Role role;
 
     // Relacion Submissions
     @ToString.Exclude
@@ -38,8 +41,9 @@ public class Users {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(
-            mappedBy = "courses",
-            fetch = FetchType.LAZY
+            mappedBy = "instructor",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL
     )
     private List<Courses> courses;
 
@@ -47,8 +51,9 @@ public class Users {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(
-            mappedBy = "enrollment",
-            fetch = FetchType.LAZY
+            mappedBy = "users",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL
     )
     private List<Enrollments> enrollments;
 

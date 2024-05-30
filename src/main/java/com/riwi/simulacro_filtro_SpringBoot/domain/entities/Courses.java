@@ -13,7 +13,7 @@ import java.util.List;
 public class Courses {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int course_id;
+    private Long course_id;
 
     @Column(length = 100, nullable = false)
     private String course_name;
@@ -26,7 +26,7 @@ public class Courses {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(
-            mappedBy = "lessons",
+            mappedBy = "courses",
             fetch = FetchType.LAZY
     )
     private List<Lessons> lessons;
@@ -40,18 +40,21 @@ public class Courses {
     private Users instructor;
 
     // Listo relacionamiento con Enrollments
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(
-            name = "fk_enrollment_id",
-            referencedColumnName = "enrollment_id"
+
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @OneToMany(
+            mappedBy = "courses",
+            fetch = FetchType.LAZY
     )
     private List<Enrollments> enrollments;
 
     // Listo relacionamiento con Messages
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(
-            name = "fk_message_id",
-            referencedColumnName = "message_id"
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @OneToMany(
+            mappedBy = "courses",
+            fetch = FetchType.LAZY
     )
     private List<Messages> message;
 }

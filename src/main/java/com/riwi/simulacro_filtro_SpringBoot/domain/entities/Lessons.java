@@ -13,7 +13,7 @@ import java.util.List;
 public class Lessons {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int lesson_id;
+    private Long lesson_id;
 
     @Column(length = 100, nullable = false)
     private String lesson_title;
@@ -22,18 +22,21 @@ public class Lessons {
     @Column(nullable = false)
     private String content;
 
+    // Lista la relacion con assignments 1 a muchos
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(
-            mappedBy = "assignments",
+            mappedBy = "lessons",
             fetch = FetchType.LAZY
     )
     private List<Assignments> assignments;
 
+
+    // Lista la relacion muchs a uno
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(
             name = "fk_course_id",
-            referencedColumnName = "courses"
+            referencedColumnName = "course_id"
     )
     private Courses courses;
 
