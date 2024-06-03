@@ -57,4 +57,14 @@ public class Users {
     )
     private List<Enrollments> enrollments;
 
+    // Relacion Enrollments
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @OneToMany(
+            mappedBy = "users",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL
+    )
+    private List<Messages> messages;
+
 }

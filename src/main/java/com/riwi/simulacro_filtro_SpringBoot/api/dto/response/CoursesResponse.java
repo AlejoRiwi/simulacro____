@@ -1,9 +1,9 @@
 package com.riwi.simulacro_filtro_SpringBoot.api.dto.response;
 
-import com.riwi.simulacro_filtro_SpringBoot.domain.entities.Courses;
 import com.riwi.simulacro_filtro_SpringBoot.domain.entities.Enrollments;
+import com.riwi.simulacro_filtro_SpringBoot.domain.entities.Lessons;
 import com.riwi.simulacro_filtro_SpringBoot.domain.entities.Messages;
-import com.riwi.simulacro_filtro_SpringBoot.domain.entities.Submissions;
+import com.riwi.simulacro_filtro_SpringBoot.domain.entities.Users;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,14 +15,12 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserResponse {
-    private Long user_id;
-    private String userName;
-    private String password;
-    private String email;
-    private String fullName;
-    private List<SubmissionsBasicResponse> submissions;
-    private List<Courses> courses;
+public class CoursesResponse {
+    private Long course_id;
+    private String course_name;
+    private String description;
+    private List<Lessons> lessons;
+    private Users instructor;
     private List<Enrollments> enrollments;
-    private List<Messages> messages;
+    private List<Messages> message;
 }
